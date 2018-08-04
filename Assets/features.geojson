@@ -1,0 +1,439 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "kaya madrid هتل استانبول"
+      },
+      "geometry": {
+        "coordinates": [
+          28.952722,
+          41.011342
+        ],
+        "type": "Point"
+      },
+      "id": "13d3822ffdbc3428a761450405ae28da"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Pianoferte Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.948797,
+          41.016069
+        ],
+        "type": "Point"
+      },
+      "id": "1ab7787d5c9d8a3366b8a8b152a4ef5b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Dareyn Konak"
+      },
+      "geometry": {
+        "coordinates": [
+          28.951051,
+          41.016104
+        ],
+        "type": "Point"
+      },
+      "id": "2529989750f8e7a18f529c1f2975aa65"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Fatih Reşadiye Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.951131,
+          41.017621
+        ],
+        "type": "Point"
+      },
+      "id": "2cf5e7177973a2058a4ac24c88a76290"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Hotel Bulvar Palas"
+      },
+      "geometry": {
+        "coordinates": [
+          28.953735,
+          41.012017
+        ],
+        "type": "Point"
+      },
+      "id": "2deb514baf83b1c9afe656845d2b0985"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Hotel Melita"
+      },
+      "geometry": {
+        "coordinates": [
+          28.951401,
+          41.010497
+        ],
+        "type": "Point"
+      },
+      "id": "30d646567513c991869eb89bd12c9526"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": "Q406",
+        "landmark": null,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": null
+      },
+      "geometry": {
+        "coordinates": [
+          41.008098,
+          28.97839
+        ],
+        "type": "Point"
+      },
+      "id": "37bc22696859744a310c33ea5f5668f5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "City Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.94843,
+          41.012314
+        ],
+        "type": "Point"
+      },
+      "id": "5575df46be0d4adf6ef94d65d404041c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Istanbul"
+      },
+      "geometry": {
+        "coordinates": [
+          28.978358,
+          41.008237
+        ],
+        "type": "Point"
+      },
+      "id": "6eb8cc339c1dd2778fb4834fdd1c2ae0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Best Nobel Hotel-2"
+      },
+      "geometry": {
+        "coordinates": [
+          28.947557,
+          41.012948
+        ],
+        "type": "Point"
+      },
+      "id": "765b234dbad47423ec4d6aa6e74a5f39"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Gozde Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.954012,
+          41.011033
+        ],
+        "type": "Point"
+      },
+      "id": "791f2f83b092ecc01f2bb1253db3f2e5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "History Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.954952,
+          41.012398
+        ],
+        "type": "Point"
+      },
+      "id": "7cbc0bed59fd6cd3e54708b0e92e5f95"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Princess Old City Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.945655,
+          41.010743
+        ],
+        "type": "Point"
+      },
+      "id": "872e94182a95e917a7886ef24747587b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Hotel Erciyes"
+      },
+      "geometry": {
+        "coordinates": [
+          28.950408,
+          41.017508
+        ],
+        "type": "Point"
+      },
+      "id": "8a52f84833a041a0a3f025ef279d5b85"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Sogut Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.955345,
+          41.012731
+        ],
+        "type": "Point"
+      },
+      "id": "8db2b23b028f40094b4c3470f15c0589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Birbey"
+      },
+      "geometry": {
+        "coordinates": [
+          28.954001,
+          41.011831
+        ],
+        "type": "Point"
+      },
+      "id": "addcfcdee4211b07d6a11b2da5d92116"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Holiday Inn Istanbul - Old City"
+      },
+      "geometry": {
+        "coordinates": [
+          28.954988,
+          41.012046
+        ],
+        "type": "Point"
+      },
+      "id": "b24dae046e1eeab1aabe27223981cb5a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Hotel Yesilpark"
+      },
+      "geometry": {
+        "coordinates": [
+          28.952546,
+          41.016509
+        ],
+        "type": "Point"
+      },
+      "id": "dca36d13664891d8260e7e104210aa28"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Hotel Budo"
+      },
+      "geometry": {
+        "coordinates": [
+          28.954327,
+          41.011563
+        ],
+        "type": "Point"
+      },
+      "id": "e528b392adf206180e7de6ed1a5bd85f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Star City Hotel"
+      },
+      "geometry": {
+        "coordinates": [
+          28.94701,
+          41.011674
+        ],
+        "type": "Point"
+      },
+      "id": "f213e78b0b557439d3deb7213821f226"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wikidata": null,
+        "landmark": true,
+        "tel": null,
+        "category": null,
+        "address": null,
+        "maki": null,
+        "name": "Papillon Suites"
+      },
+      "geometry": {
+        "coordinates": [
+          28.948065,
+          41.017688
+        ],
+        "type": "Point"
+      },
+      "id": "f96ef82fff7893eb41427bcf3b6d435f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Null Island"
+      },
+      "geometry": {
+        "coordinates": [
+          -2.362666,
+          53.456639
+        ],
+        "type": "Point"
+      },
+      "id": "place.9962989141465270"
+    }
+  ],
+  "type": "FeatureCollection"
+}
