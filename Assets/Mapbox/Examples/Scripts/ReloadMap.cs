@@ -1,4 +1,4 @@
-﻿namespace Mapbox.Examples
+namespace Mapbox.Examples
 {
 	using Mapbox.Geocoding;
 	using UnityEngine.UI;
@@ -23,14 +23,19 @@
 
 		WaitForSeconds _wait;
 
+        [SerializeField]
+        Text _LatLong;
 		void Awake()
 		{
 			_camera = Camera.main;
 			_cameraStartPos = _camera.transform.position;
 			_map = FindObjectOfType<AbstractMap>();
 			_forwardGeocoder.OnGeocoderResponse += ForwardGeocoder_OnGeocoderResponse;
+            _zoomSlider.value = _map.Zoom;
 			_zoomSlider.onValueChanged.AddListener(Reload);
 			_wait = new WaitForSeconds(.3f);
+
+            _LatLong.text = "Lat/Long: " + _map.CenterLatitudeLongitude.ToString();
 		}
 
 		void ForwardGeocoder_OnGeocoderResponse(ForwardGeocodeResponse response)
@@ -45,6 +50,17 @@
 				_map.UpdateMap(response.Features[0].Center, (int)_zoomSlider.value);
 			}
 		}
+
+        void Update()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000.0f))
+            {
+                var latlong = _map.WorldToGeoPosition(hit.point);
+                _LatLong.text = "Lat/Long: " + latlong.x.ToString() + ", " + latlong.y.ToString();
+            }                        
+        }
 
 		void Reload(float value)
 		{

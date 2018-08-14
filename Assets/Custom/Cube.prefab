@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4639703652268202}
   - component: {fileID: 33724809031164670}
   - component: {fileID: 23863397355605988}
-  - component: {fileID: 65976298945445382}
   - component: {fileID: 114923819867799688}
+  - component: {fileID: 114240403697038758}
+  - component: {fileID: 65634853595320598}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -68,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1213701316252784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -402.78912, y: 801.78046, z: -1460.0221}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 1261.5594, y: 705.26, z: 996.67}
+  m_LocalScale: {x: 24.70948, y: 24.70948, z: 24.70948}
   m_Children:
   - {fileID: 4370389482334812}
   m_Father: {fileID: 0}
@@ -125,7 +126,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6ca657dbc12990048911d706d254ad6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,8 +152,8 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1213701316252784}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65976298945445382
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65634853595320598
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +163,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!102 &102452571996700090
 TextMesh:
@@ -185,6 +186,18 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &114240403697038758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1213701316252784}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22805dac1b8933d49b89c409a8903cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
 --- !u!114 &114922959429145454
 MonoBehaviour:
   m_ObjectHideFlags: 1

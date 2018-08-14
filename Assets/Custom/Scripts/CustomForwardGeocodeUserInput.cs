@@ -15,7 +15,7 @@ namespace Mapbox.Examples
     using Mapbox.Unity.MeshGeneration.Components;
 
     [RequireComponent(typeof(InputField))]
-	public class CustomForwardGeocodeUserInput : MonoBehaviour
+	public class CustomForwardGeocodeUserInput : ForwardGeocodeUserInput
 	{
 		InputField _inputField;
 

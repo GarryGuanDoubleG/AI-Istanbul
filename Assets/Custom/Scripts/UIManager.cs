@@ -97,8 +97,8 @@ public class UIManager : MonoBehaviour {
         camMovement.MoveTo(map.GeoToWorldPosition(LongLat));
         map.UpdateMap(LongLat, map.AbsoluteZoom);
         UpdateActiveState(ScreenState.MapUI);
-    }   
-
+    }
+   
     public void UpdateActiveState(ScreenState newState)
     {
         if (currState == newState) return;

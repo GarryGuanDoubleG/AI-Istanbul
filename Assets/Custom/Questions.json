@@ -1,0 +1,69 @@
+{
+  "category": [
+    "food",
+    "location"
+  ],
+  "questions": [
+    {
+      "text": "Where will you go to eat",
+      "type": "map",
+      "answers": [ "" ],
+      "category": "food"
+    },
+    {
+      "text": "What will you eat?",
+      "type": "dropdown",
+      "answers": [
+        "meat",
+        "vegetables",
+        "option 3"
+      ],
+      "category": "food"
+    },
+    {
+      "text": "Who will you go with?",
+      "type": "dropdown",
+      "answers": [
+        "family",
+        "friends",
+        "family and friends",
+        "coworker"
+      ],
+      "category": "food"
+    },
+    {
+      "text": "What are you going to do after",
+      "type": "dropdown",
+      "answers": [
+        "Watch a movie",
+        "Go Home",
+        "option 3"
+      ],
+      "category": "food"
+    },
+    {
+      "text": "Where did you go to school?",
+      "type": "map",
+      "answers": [ "" ],
+      "category": "location"
+    },
+    {
+      "text": "How did you get there?",
+      "type": "dropdown",
+      "answers": [
+        "Bus",
+        "Train",
+        "Subway"
+      ],
+      "category": "location"
+    },
+    {
+      "text": "What is your name?",
+      "type": "input",
+      "answers": [],
+      "category": "location"
+    }
+
+  ]
+}
+

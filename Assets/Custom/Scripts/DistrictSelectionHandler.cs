@@ -109,6 +109,7 @@ public class DistrictSelectionHandler : MonoBehaviour {
     };
 
     private string accessToken = "access_token=pk.eyJ1IjoiYW15a2hvb3ZlciIsImEiOiJjampweTJjbGs4MmRjM2twMTdzbWl6dTkyIn0.nHcaY9wzvR1jyEgAk81fjg";
+
     // Use this for initialization
     void Start () {
         selectDistrictHandler = UIManager.GetSelectDistrictHandler();
@@ -142,8 +143,6 @@ public class DistrictSelectionHandler : MonoBehaviour {
         Camera.main.GetComponent<CameraMovement>().SetCanMove(true);
     }
 
-
-
     // Update is called once per frame
     void Update () {
 		if(isSelectingMapPoint && Input.GetMouseButtonDown(0))
@@ -158,13 +157,9 @@ public class DistrictSelectionHandler : MonoBehaviour {
             Ray ray = Camera.main.ScreenPointToRay(clickPos);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 1000.0f))
-            {
                 StartCoroutine(QueryPoints(hit.point));
-            }
             else
-            {
                 canvasItems.SetActive(true); //missed so just go back           
-            }
         }
 	}
 
