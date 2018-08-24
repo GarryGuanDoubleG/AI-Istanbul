@@ -16,11 +16,11 @@ namespace Mapbox.Examples
 	[RequireComponent(typeof(InputField))]
 	public class ForwardGeocodeUserInput : MonoBehaviour
 	{
-		InputField _inputField;
+		protected InputField _inputField;
 
-		ForwardGeocodeResource _resource;
+		protected ForwardGeocodeResource _resource;
 
-		Vector2d _coordinate;
+		protected Vector2d _coordinate;
 		public Vector2d Coordinate
 		{
 			get
@@ -29,7 +29,7 @@ namespace Mapbox.Examples
 			}
 		}
 
-		bool _hasResponse;
+		protected bool _hasResponse;
 		public bool HasResponse
 		{
 			get
@@ -38,7 +38,7 @@ namespace Mapbox.Examples
 			}
 		}
 
-		public ForwardGeocodeResponse Response { get; private set; }
+		public ForwardGeocodeResponse Response { get; protected set; }
 
 		//public event Action<> OnGeocoderResponse = delegate { };
 		public event Action<ForwardGeocodeResponse> OnGeocoderResponse = delegate { };
@@ -60,7 +60,7 @@ namespace Mapbox.Examples
 			}
 		}
 
-		void HandleGeocoderResponse(ForwardGeocodeResponse res)
+		protected void HandleGeocoderResponse(ForwardGeocodeResponse res)
 		{
 			_hasResponse = true;
 			if (null == res)

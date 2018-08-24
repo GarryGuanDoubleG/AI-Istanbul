@@ -19,6 +19,12 @@ public class AddFeature : MonoBehaviour {
     public Vector2 hotSpot;
 
     public GameObject prefab;
+    public delegate void OnClickButton();
+    public OnClickButton onClickAddButton;
+
+    public delegate void OnAddFeature(string featureName, Vector2d featureLatLong);
+    public OnAddFeature addFeatureCallback;
+
 
     public enum SelectionMode
     {
@@ -137,7 +143,6 @@ public class AddFeature : MonoBehaviour {
                 break;
         }
 
-
         switch (newMode)
         {
             case SelectionMode.Location:
@@ -183,9 +188,10 @@ public class AddFeature : MonoBehaviour {
                 Vector3 spawnPoint = map.GeoToWorldPosition(feature.Center);
                 spawnPoint.y += prefab.GetComponent<BoxCollider>().size.y * prefab.transform.localScale.y * .5f;
 
-                var selectGO = Instantiate(prefab, spawnPoint, Quaternion.identity);
+                var selectGO = Instantiate(prefab, spawnPoint, Quaternion.Euler(90.0f, 0, 0));                
+                string name = feature.PlaceName.Split(',')[0];
                 var label = selectGO.GetComponent<CustomLabelTextSetter>();
-                label.SetName(feature.PlaceName);
+                label.SetName(name);
 
                 var entry = new SelectionEntry(selectGO, feature);
                 selectionList.Add(entry);
@@ -204,7 +210,7 @@ public class AddFeature : MonoBehaviour {
 
         //string tilesetId = "cjjxgjqlw015wksmet7qq0ip1-8ngzu";
         string myId = "amykhoover";
-        string datasetId = "cjjxgjqlw015wksmet7qq0ip1";
+        string datasetId = "cjl5mxavj0vfm2qmxdngdsie0";
         string feature = Mapbox.Json.JsonConvert.SerializeObject(newFeature);
 
         //"https://api.mapbox.com/datasets/v1/[myID]/[myDatasetID]/features/[myFeatureID]?access_token=[myAccessToken]";
@@ -236,9 +242,10 @@ public class AddFeature : MonoBehaviour {
         else
         {
             Debug.Log("ApplyDatasetToTileset www = " + www.downloadHandler.text);
-            StartCoroutine(ApplyDatasetToTileset());
+            StartCoroutine(ApplyDatasetToTileset());            
         }
 
+        addFeatureCallback(entry.feature.Properties["name"].ToString(), newFeature.Geometry.Coordinates);
         yield return null;
     }
 

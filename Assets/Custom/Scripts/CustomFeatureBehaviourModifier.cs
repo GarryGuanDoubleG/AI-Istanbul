@@ -11,7 +11,7 @@
 		private Dictionary<GameObject, CustomFeatureBehaviour> _features;        
 		private CustomFeatureBehaviour _tempFeature;
 
-        public List<CustomFeatureBehaviour> featureList;
+        public static List<CustomFeatureBehaviour> featureList;
 
         //TODO make this a dictionary for GO lookups
         public GameObject prefab;
@@ -51,7 +51,10 @@
 				_features = new Dictionary<GameObject, CustomFeatureBehaviour>();
 			}
 
-            featureList.Clear();
+            if (featureList == null)
+                featureList = new List<CustomFeatureBehaviour>();
+            else
+                featureList.Clear();
 		}
 
 		public override void Run(VectorEntity ve, UnityTile tile)

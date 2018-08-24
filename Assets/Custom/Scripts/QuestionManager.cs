@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using Mapbox.Utils;
+using Mapbox.Geocoding;
 
 public class QuestionManager : MonoBehaviour {
 
@@ -25,6 +27,15 @@ public class QuestionManager : MonoBehaviour {
     private Dictionary<string, List<Question>> questionListByCategory; //quesiton list by category
     private List<Question> currentQuestionList;
     private int currentQuestionIndex;
+
+    //
+    struct Session
+    {
+        public string id;
+        public List<KeyValuePair<string, List<string>>> answers;
+    }
+    private List<Session> sessions;
+    int sessionIndex;
 
     public Button skipButton;
     public Button categoryButton;
@@ -51,7 +62,9 @@ public class QuestionManager : MonoBehaviour {
             {
                 displayDict.Add("dropdown", child);
                 answerDropdown = child.GetComponentInChildren<Dropdown>();
-                answerDropdown.onValueChanged.AddListener(OnSelectDropdown);
+                var submitButton = child.GetComponentInChildren<Button>();
+                submitButton.onClick.AddListener(OnSubmitDropdown);
+                //answerDropdown.onValueChanged.AddListener(OnSelectDropdown);
             }
             else if (name == "Map Question")
             {
@@ -86,15 +99,27 @@ public class QuestionManager : MonoBehaviour {
         foreach (Question question in questionData.questions)
             questionListByCategory[question.category].Add(question);
 
+        StartNewSession();
         InitCategoryQuestions();
     }
 	
+    public void StartNewSession()
+    {
+        if (sessions == null)
+            sessions = new List<Session>();
+
+        Session session;
+        session.id = DateTime.Now.ToString("hhmmss") + sessions.Count;
+        session.answers = new List<KeyValuePair<string, List<string>>>();
+
+        sessions.Add(session);
+        sessionIndex = sessions.Count - 1;
+    }
     void InitCategoryQuestions()
     {
         GameObject categoryObj = displayDict["category"].gameObject;
         currDisplay = categoryObj;
 
-        var categoryRectTrans = categoryObj.GetComponent<RectTransform>();
         questionText.text = "Which categories do you want to answer";
 
         foreach (string category in questionData.category)
@@ -109,6 +134,10 @@ public class QuestionManager : MonoBehaviour {
         }        
     }
 
+    private Question GetCurrenetQuestion()
+    {
+        return currentQuestionList[currentQuestionIndex];
+    }
 
     private void SetQuestionText(string text)
     {
@@ -191,13 +220,15 @@ public class QuestionManager : MonoBehaviour {
     {
         panel.GetComponent<Image>().enabled = false;
         displayDict["question"].SetActive(false);
+
     }
 
-    private void OnSelectMapPoint(Vector2d latlong)
+    private void OnSelectMapPoint(string featureName, string featureLatLong)
     {
-        Debug.Log("Lat long " + latlong);
-        panel.GetComponent<Image>().enabled = true;
         displayDict["question"].SetActive(true);
+
+        string questionID = GetCurrenetQuestion().id;
+        sessions[sessionIndex].answers.Add(new KeyValuePair<string, List<string>>(questionID, new List<string> { featureName, featureLatLong }));
 
         SetNextQuestion();
     }
@@ -205,12 +236,19 @@ public class QuestionManager : MonoBehaviour {
     private void OnAnswerInputField(string answer)
     {
         Debug.Log("answer is " + answer);
+        string questionID = GetCurrenetQuestion().id;
+        sessions[sessionIndex].answers.Add(new KeyValuePair<string, List<string>>(questionID, new List<string> { answer }));
+
         SetNextQuestion();
     }
 
-    private void OnSelectDropdown(int index)
+    private void OnSubmitDropdown()
     {
-        Debug.Log("answer is " + answerDropdown.options[index]);
+        Debug.Log("answer is " + answerDropdown.options[answerDropdown.value].text);
+        string answer = answerDropdown.options[answerDropdown.value].text;
+        string questionID = GetCurrenetQuestion().id;
+        sessions[sessionIndex].answers.Add(new KeyValuePair<string, List<string>>(questionID, new List<string> { answer }));
+
         SetNextQuestion();
     }
 
@@ -227,14 +265,19 @@ public class QuestionManager : MonoBehaviour {
         SetNextQuestion();
     }
 
+    public void SubmitAnswerData()
+    {
+        //call a coroutine to upload data to DB
+        //all the answers are in the sessions variable in string format with the respective question IDs
+
+        //start new session after
+        sessions.Clear();
+        StartNewSession();
+        SetNewDisplay("category");
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-    void GetQuestions(string category)
-    {
-
-    }
-
 }

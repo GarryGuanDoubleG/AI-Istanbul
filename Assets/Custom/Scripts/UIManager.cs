@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mapbox.Examples;
 using Mapbox.Unity.Map;
 
@@ -8,6 +9,8 @@ public class UIManager : MonoBehaviour {
 
     public float maxIdleTime;
     public float idleToNewSessionTime;
+    public float displayTextTimer;
+
     private float idleTimeCounter;
 
     public Camera camera;
@@ -55,6 +58,12 @@ public class UIManager : MonoBehaviour {
         return selectDistrictHandler;
     }
 
+    public Text newSessionTimerText;
+    public Text newSessionTimer;
+
+    public QuestionManager questionManager;
+    public Button quitButton;
+
     private void Awake()
     {
         if (transitionHandler == null)
@@ -83,6 +92,8 @@ public class UIManager : MonoBehaviour {
             activeCanvas.gameObject.SetActive(true);
             currState = ScreenState.ScreenSaver;            
         }
+
+        quitButton.onClick.AddListener(OnClickQuit);
 	}
 	
     void SetActiveCanvas(ScreenState canvasType)
@@ -127,6 +138,13 @@ public class UIManager : MonoBehaviour {
         currState = newState;
     }
 
+    public void OnClickQuit()
+    {
+        questionManager.SubmitAnswerData();
+        nextState = ScreenState.None;
+        UpdateActiveState(ScreenState.ScreenSaver);
+    }
+
 	// Update is called once per frame
 	void Update () {
         idleTimeCounter += Time.deltaTime;
@@ -135,6 +153,7 @@ public class UIManager : MonoBehaviour {
         if (Input.anyKey || (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0) || Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             idleTimeCounter = 0.0f;
+            newSessionTimerText.gameObject.SetActive(false);
             if (currState == ScreenState.ScreenSaver)
             {
                 if (nextState == ScreenState.None)
@@ -142,20 +161,29 @@ public class UIManager : MonoBehaviour {
                 else
                     UpdateActiveState(nextState);
             }
-        }
+        }        
         else if (idleTimeCounter >= maxIdleTime)
         {
-            if (currState != ScreenState.ScreenSaver)
-            {
-                nextState = currState;//go back to where we were
-                UpdateActiveState(ScreenState.ScreenSaver);
-            }
+            questionManager.SubmitAnswerData();
+
+            //if (currState != ScreenState.ScreenSaver)
+            //{
+            //    nextState = currState;//go back to where we were
+            //    UpdateActiveState(ScreenState.ScreenSaver);
+            //}
             
-            if(idleTimeCounter >= idleToNewSessionTime)
-            {
-                nextState = ScreenState.None;
-            }
-                
+            //if(idleTimeCounter >= idleToNewSessionTime)
+            //{
+            //    nextState = ScreenState.None;
+            //}
+
+            nextState = ScreenState.None;
+            UpdateActiveState(ScreenState.ScreenSaver);
+        }
+        else if(maxIdleTime - idleTimeCounter <= displayTextTimer)
+        {            
+            newSessionTimerText.gameObject.SetActive(true);
+            newSessionTimer.text = ((int)(maxIdleTime - idleTimeCounter)).ToString() + "s";
         }
 	}
 }

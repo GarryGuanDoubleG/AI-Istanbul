@@ -23,8 +23,6 @@ namespace Mapbox.Examples
 
 		WaitForSeconds _wait;
 
-        [SerializeField]
-        Text _LatLong;
 		void Awake()
 		{
 			_camera = Camera.main;
@@ -34,8 +32,6 @@ namespace Mapbox.Examples
             _zoomSlider.value = _map.Zoom;
 			_zoomSlider.onValueChanged.AddListener(Reload);
 			_wait = new WaitForSeconds(.3f);
-
-            _LatLong.text = "Lat/Long: " + _map.CenterLatitudeLongitude.ToString();
 		}
 
 		void ForwardGeocoder_OnGeocoderResponse(ForwardGeocodeResponse response)
@@ -53,13 +49,7 @@ namespace Mapbox.Examples
 
         void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000.0f))
-            {
-                var latlong = _map.WorldToGeoPosition(hit.point);
-                _LatLong.text = "Lat/Long: " + latlong.x.ToString() + ", " + latlong.y.ToString();
-            }                        
+                   
         }
 
 		void Reload(float value)

@@ -5,12 +5,14 @@
   ],
   "questions": [
     {
+      "id":  "1000",
       "text": "Where will you go to eat",
       "type": "map",
       "answers": [ "" ],
       "category": "food"
     },
     {
+      "id": "1001",
       "text": "What will you eat?",
       "type": "dropdown",
       "answers": [
@@ -21,6 +23,7 @@
       "category": "food"
     },
     {
+      "id": "1002",
       "text": "Who will you go with?",
       "type": "dropdown",
       "answers": [
@@ -32,6 +35,7 @@
       "category": "food"
     },
     {
+      "id": "1003",
       "text": "What are you going to do after",
       "type": "dropdown",
       "answers": [
@@ -42,12 +46,14 @@
       "category": "food"
     },
     {
+      "id": "2000",
       "text": "Where did you go to school?",
       "type": "map",
       "answers": [ "" ],
       "category": "location"
     },
     {
+      "id": "2001",
       "text": "How did you get there?",
       "type": "dropdown",
       "answers": [
@@ -58,6 +64,7 @@
       "category": "location"
     },
     {
+      "id": "2002",
       "text": "What is your name?",
       "type": "input",
       "answers": [],

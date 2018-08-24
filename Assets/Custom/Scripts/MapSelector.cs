@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Mapbox.Geocoding;
 using Mapbox.Utils;
 using Mapbox.Unity.Map;
 using Mapbox.Examples;
+using Mapbox.Unity.MeshGeneration.Components;
 
 public class MapSelector : MonoBehaviour
 {
@@ -13,14 +15,22 @@ public class MapSelector : MonoBehaviour
     public Texture2D cursorTex;
     public CursorMode cursorMode = CursorMode.Auto;
     public GameObject panel;
+
+    //select map UI objects
+    public GameObject selectFeature;
+    public GameObject zoomSlider;
+    public GameObject addFeatureButton;
+    public GameObject searchFeature;
+
     private Vector2 hotSpot;
 
-    private bool isSelectingMapPoint;
+    private bool isAddingFeature;
+    private bool isSelectingMapFeature;
     private Image buttonImage;
     private Text buttonText;
 
-    public delegate void SelectPoint(Vector2d latlong);
-    public SelectPoint selectCallback;
+    public delegate void SelectFeature(string featureName, string featureLatLong);
+    public SelectFeature selectCallback;
 
     public delegate void OnClickButton();
     public OnClickButton onClickButtonCallback;
@@ -36,19 +46,64 @@ public class MapSelector : MonoBehaviour
         buttonImage = transform.GetChild(0).GetComponent<Image>();
         buttonText = buttonImage.transform.GetChild(0).GetComponent<Text>();
     }
+    private void Start()
+    {
+        selectFeature.SetActive(true);
+
+        addFeatureButton.SetActive(false);
+        zoomSlider.SetActive(false);
+        searchFeature.SetActive(false);
+
+        var addFeatureComponent = addFeatureButton.GetComponent<AddFeature>();
+        addFeatureComponent.onClickAddButton = OnClickAddFeature;
+        addFeatureComponent.addFeatureCallback = OnAddFeature;
+    }
 
     private void OnEnable()
     {
+    }
+
+    public void ResetState()
+    {
         buttonImage.enabled = true;
         buttonText.enabled = true;
+        isSelectingMapFeature = false;
+        isAddingFeature = false;
+
+        addFeatureButton.SetActive(false);
+        zoomSlider.SetActive(false);
+        searchFeature.SetActive(false);
+
+        Camera.main.GetComponent<CameraMovement>().SetCanMove(false);
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
+
+    public void OnClickAddFeature()
+    {
+        isAddingFeature = true;
+    }
+    public void OnAddFeature(string featureName, Vector2d featureLatLong)
+    {
+        selectCallback(featureName, featureLatLong.ToString());
+        Debug.Log("Add feature name " + featureName);
+        Debug.Log("Add feature latlong " + featureLatLong.ToString());
+
+        ResetState();
     }
 
     public void OnClickSelectMapButton()
     {
         Cursor.SetCursor(cursorTex, hotSpot, cursorMode);
-        isSelectingMapPoint = true;
+        //get rid of UI that are in the way
+        isSelectingMapFeature = true;
         buttonImage.enabled = false;
         buttonText.enabled = false;
+        panel.GetComponent<Image>().enabled = false;
+
+        //enable options for selecting features
+        addFeatureButton.SetActive(true);
+        zoomSlider.SetActive(true);
+        searchFeature.SetActive(true);
 
         Camera.main.GetComponent<CameraMovement>().SetCanMove(true);
 
@@ -58,58 +113,29 @@ public class MapSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSelectingMapPoint && Input.GetMouseButtonDown(0))
-        {
-            Cursor.SetCursor(null, Vector2.zero, cursorMode);
-            Camera.main.GetComponent<CameraMovement>().SetCanMove(false);
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
 
+        if (isSelectingMapFeature && !isAddingFeature && Input.GetMouseButtonDown(0))
+        {                  
             Vector3 clickPos = Input.mousePosition;
-
             Ray ray = Camera.main.ScreenPointToRay(clickPos);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 1000.0f))
             {
-                selectCallback(map.WorldToGeoPosition(hit.point));
-                isSelectingMapPoint = false;
+                CustomFeatureBehaviour feature = hit.collider.gameObject.GetComponentInParent<CustomFeatureBehaviour>();
+                if(feature != null)
+                {
+                    string name = feature.Data.Properties["name"].ToString();
+                    Vector2d latlong = map.WorldToGeoPosition(hit.point);                    
+                    selectCallback(name, latlong.ToString());
+
+                    Debug.Log("Latlong " + latlong);
+                    Debug.Log(name);
+
+                    ResetState();
+                }
             }
-            //else
-            //    panel.SetActive(true); //missed so just go back
         }
     }
-
-
-    //IEnumerator QueryPoints(Vector3 point)
-    //{
-    //    Vector2d vecLatLong = map.WorldToGeoPosition(point);
-    //    string latLong = vecLatLong.y + "," + vecLatLong.x + ".json?";
-
-    //    //string parameters = "types=poi&limit=5&";
-    //    string parameters = "types=poi";
-
-    //    string postURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + latLong + parameters + "&" + accessToken;
-
-
-    //    WWW www = new WWW(postURL);
-    //    yield return www;
-
-    //    if (www.error != null)
-    //    {
-    //        Debug.Log("QueryAdd www error: " + www.error);
-    //    }
-    //    else
-    //    {
-    //        var response = MapboxAccess.Instance.Geocoder.Deserialize<ForwardGeocodeResponse>(www.text);
-    //        Debug.Log("response: " + www.text);
-    //        string district = "";
-    //        foreach (Feature feature in response.Features)
-    //        {
-    //            district = feature.Context[0]["text"];
-    //            Debug.Log("District" + district);
-    //            break;
-    //        }
-
-    //        selectDistrictHandler(district, vecLatLong);
-    //    }
-    //}
-
 }

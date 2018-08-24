@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Question
 {
+    public string id;
     public string text;
     public string type;
     public List<string> answers;
